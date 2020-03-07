@@ -10,8 +10,7 @@
   </head>
 
   <body>
-    <%# ToDo: 削除 debug用 %>
-    <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
+    <%= render 'layouts/header' %>
 
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
