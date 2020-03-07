@@ -1,6 +1,9 @@
 <p id="notice"><%= notice %></p>
 
 <p>User info</p>
+
+<%= attachment_image_tag @user, :profile_image, :fill, 300, 300 %>
+
 <p>
   <strong>Name:</strong>
   <%= @user.name %>
@@ -15,6 +18,12 @@
   <strong>Introduction:</strong>
   <%= @user.introduction %>
 </p>
+
+<% @books.each do |book| %>
+  <%= attachment_image_tag book.user, :profile_image, :fill, 300, 300 %>
+  <%= link_to book.title, book_path(book) %>
+  <%= book.body %>
+<% end %>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
