@@ -19,11 +19,16 @@
   <%= @user.introduction %>
 </p>
 
-<% @books.each do |book| %>
-  <%= attachment_image_tag book.user, :profile_image, :fill, 300, 300 %>
-  <%= link_to book.title, book_path(book) %>
-  <%= book.body %>
+<p>New book</p>
+<%= form_with scope: :book, url: books_path, local: true do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+  <%= f.label :body %>
+  <%= f.text_field :body %>
+  <%= f.submit 'Create Book' %>
 <% end %>
+
+<%= render 'books/table' %>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
