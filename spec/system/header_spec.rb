@@ -16,8 +16,8 @@ describe 'ヘッダーのテスト' do
       it 'Aboutリンクが表示される' do
         is_expected.to have_content 'About'
       end
-      it 'Sign upリンクが表示される' do
-        is_expected.to have_content 'Sign up'
+      it 'sign upリンクが表示される' do
+        is_expected.to have_content 'sign up'
       end
       it 'loginリンクが表示される' do
         is_expected.to have_content 'login'
@@ -34,7 +34,7 @@ describe 'ヘッダーのテスト' do
         is_expected.to eq(home_about_path)
       end
       it '新規登録画面に遷移する' do
-        click_link 'Sign up'
+        click_link 'sign up'
         is_expected.to eq(new_user_registration_path)
       end
       it 'ログイン画面に遷移する' do
