@@ -43,8 +43,7 @@ group :development, :test do
   # Capybara system testingとselenium driverのサポートを追加
   gem 'capybara'
   gem 'selenium-webdriver'
-  # Chromeでのシステムテスト実行に使うchromedriverを簡易インストール
-  gem 'chromedriver-helper'
+
 end
 
 group :development do
@@ -64,6 +63,7 @@ group :test do
   gem 'faker'
   gem 'shoulda-matchers'
   gem 'rails-controller-testing'
+  gem 'webdrivers'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
