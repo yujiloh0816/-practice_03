@@ -6,13 +6,6 @@ class BooksController < ApplicationController
     @books = Book.all
   end
 
-  # GET /books/1
-  # GET /books/1.json
-  def show; end
-
-  # GET /books/1/edit
-  def edit; end
-
   # POST /books
   # POST /books.json
   def create

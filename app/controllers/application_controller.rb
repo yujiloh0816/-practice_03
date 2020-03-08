@@ -4,6 +4,11 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :set_obj, only: [:show, :edit, :update, :destroy], unless: :devise_controller?
 
+  def show; end
+
+  def edit; end
+
+
   def after_sign_in_path_for(resource)
     user_path(resource)
   end

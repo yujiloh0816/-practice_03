@@ -6,15 +6,6 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
-  # GET /users/1
-  # GET /users/1.json
-  def show
-    @books = @user.books
-  end
-
-  # GET /users/1/edit
-  def edit; end
-
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
