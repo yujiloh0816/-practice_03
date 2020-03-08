@@ -38,3 +38,6 @@ en:
         email: Email
         introduction: Introduction
         profile_image: Image
+      book:
+        title: Title
+        body: Opinion

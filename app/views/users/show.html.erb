@@ -1,34 +1,10 @@
 <p id="notice"><%= notice %></p>
 
-<p>User info</p>
+<div class="col-xs-3">
+  <%= render 'users/info', user: current_user %>
+  <%= render 'books/form' %>
+</div>
 
-<%= attachment_image_tag @user, :profile_image, :fill, 300, 300 %>
-
-<p>
-  <strong>Name:</strong>
-  <%= @user.name %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
-
-<p>
-  <strong>Introduction:</strong>
-  <%= @user.introduction %>
-</p>
-
-<p>New book</p>
-<%= form_with scope: :book, url: books_path, local: true do |f| %>
-  <%= f.label :title %>
-  <%= f.text_field :title %>
-  <%= f.label :body %>
-  <%= f.text_field :body %>
-  <%= f.submit 'Create Book' %>
-<% end %>
-
-<%= render 'books/table' %>
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<div class="col-xs-9">
+  <%= render 'books/table' %>
+</div>
