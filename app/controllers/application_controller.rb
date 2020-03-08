@@ -24,6 +24,14 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def destroy
+    obj.destroy
+    respond_to do |format|
+      format.html { redirect_to (send "#{obj_name.pluralize}_url"), notice: "#{obj_name.camelize} was successfully destroyed." }
+      format.json { head :no_content }
+    end
+  end
+
   def after_sign_in_path_for(resource)
     user_path(resource)
   end
