@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!, unless: :home_controller?
+  before_action :authenticate_action!, only: [:edit, :update, :destroy]
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   def after_sign_in_path_for(resource)
@@ -15,4 +16,7 @@ class ApplicationController < ActionController::Base
   def home_controller?
     params[:controller] == 'home'
   end
+
+  def authenticate_action!; end
+
 end
