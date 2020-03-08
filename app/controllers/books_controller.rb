@@ -1,6 +1,6 @@
 class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update, :destroy]
-  before_action :current_user?, only: [:edit, :update, :destroy]
+  before_action :authenticate_action!, only: [:edit, :update, :destroy]
 
   # GET /books
   # GET /books.json
@@ -69,7 +69,7 @@ class BooksController < ApplicationController
     params.require(:book).permit(:title, :body, :user_id)
   end
 
-  def current_user?
+  def authenticate_action!
     redirect_to books_path unless current_user.books.pluck(:id).include?(params[:id].to_i)
   end
 

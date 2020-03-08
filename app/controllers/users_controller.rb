@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update]
-  before_action :current_user?, only: [:edit, :update]
+  before_action :authenticate_action!, only: [:edit, :update]
 
   # GET /users
   # GET /users.json
@@ -65,7 +65,7 @@ class UsersController < ApplicationController
     params.require(:user).permit(:name, :email, :introduction, :profile_image)
   end
 
-  def current_user?
+  def authenticate_action!
     redirect_to user_path(current_user) unless current_user.id == params[:id].to_i
   end
 
