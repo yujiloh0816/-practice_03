@@ -1,11 +1,5 @@
 class UsersController < ApplicationController
 
-  # GET /users
-  # GET /users.json
-  def index
-    @users = User.all
-  end
-
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update

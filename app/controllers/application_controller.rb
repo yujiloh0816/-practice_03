@@ -4,6 +4,10 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :set_obj, only: [:show, :edit, :update, :destroy], unless: :devise_controller?
 
+  def index
+    instance_variable_set("@#{obj_name.pluralize}", klass.all)
+  end
+
   def show; end
 
   def edit; end
@@ -26,9 +30,15 @@ class ApplicationController < ActionController::Base
   def authenticate_action!; end
 
   def set_obj
-    _obj = params[:controller].singularize
-    klass = _obj.camelize.constantize
-    instance_variable_set("@#{_obj}", klass.find(params[:id]))
+    instance_variable_set("@#{obj_name}", klass.find(params[:id]))
+  end
+
+  def obj_name
+    params[:controller].singularize
+  end
+
+  def klass
+    obj_name.camelize.constantize
   end
 
 end
