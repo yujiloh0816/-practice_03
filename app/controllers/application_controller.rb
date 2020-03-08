@@ -12,6 +12,17 @@ class ApplicationController < ActionController::Base
 
   def edit; end
 
+  def update
+    respond_to do |format|
+      if obj.update(send "#{obj_name}_params")
+        format.html { redirect_to obj, notice: "#{obj_name.camelize} was successfully updated." }
+        format.json { render :show, status: :ok, location: obj }
+      else
+        format.html { render :edit }
+        format.json { render json: obj.errors, status: :unprocessable_entity }
+      end
+    end
+  end
 
   def after_sign_in_path_for(resource)
     user_path(resource)
@@ -31,6 +42,10 @@ class ApplicationController < ActionController::Base
 
   def set_obj
     instance_variable_set("@#{obj_name}", klass.find(params[:id]))
+  end
+
+  def obj
+    instance_variable_get("@#{obj_name}")
   end
 
   def obj_name
