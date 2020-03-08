@@ -12,6 +12,19 @@ class ApplicationController < ActionController::Base
 
   def edit; end
 
+  def create
+    instance_variable_set("@#{obj_name}", klass.new(send "#{obj_name}_params"))
+    respond_to do |format|
+      if obj.save
+        format.html { redirect_to obj, notice: "#{obj_name.camelize} was successfully created." }
+        format.json { render :show, status: :created, location: obj }
+      else
+        format.html { render :index }
+        format.json { render json: obj.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   def update
     respond_to do |format|
       if obj.update(send "#{obj_name}_params")
