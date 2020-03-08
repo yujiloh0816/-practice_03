@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!, unless: :home_controller?
   before_action :authenticate_action!, only: [:edit, :update, :destroy]
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :set_obj, only: [:show, :edit, :update, :destroy], unless: :devise_controller?
 
   def after_sign_in_path_for(resource)
     user_path(resource)
@@ -18,5 +19,11 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate_action!; end
+
+  def set_obj
+    _obj = params[:controller].singularize
+    klass = _obj.camelize.constantize
+    instance_variable_set("@#{_obj}", klass.find(params[:id]))
+  end
 
 end
